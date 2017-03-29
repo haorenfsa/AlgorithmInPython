@@ -1,9 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-#import os
-#utils
-def EXCHANGE(a, b):
-	return (b, a)
+import util
+from util import EXCHANGE, LIST
+EXCHANGE = util.EXCHANGE
 
 #以下复杂度为O(1)
 def PARENT(i):
@@ -92,26 +91,6 @@ def MAX_HEAP_INSERT_KEY(A, key):
 	A[A.heap_size - 1] = - 1 #应该是一个负无穷，但是我们假设堆都是正数
 	HEAP_INCREASE_KEY(A, A.heap_size-1, key)
 
-
-
-class LIST(object):
-	def __init__(self, Array):
-		self.heap_size = len(Array)
-		self.data = {}
-		self.length = len(Array)
-		#print self.length
-		for i in range(self.length):
-			self.data[i] = Array[i]
-
-	def __getitem__(self, key):
-		return self.data[key]
-
-	def __setitem__(self, key, value):
-		self.data[key] = value
-
-	def display(self):
-		for i in range(self.heap_size):
-			print self.data[i]
 
 if __name__ == "__main__":
 	print "START"
