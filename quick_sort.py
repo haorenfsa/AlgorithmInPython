@@ -3,6 +3,9 @@
 import util
 from util import LIST
 EXCHANGE = util.EXCHANGE
+
+import random
+
 #good: 
 # good average time cost, with small factor of nlg(n)
 # origin addr sort
@@ -29,9 +32,30 @@ def QUICK_SORT(A, p, r):
 		QUICK_SORT(A, p, q-1)
 		QUICK_SORT(A, q+1, r)
 
+
+#
+# random-sampled quicksort
+#
+
+
+def RANDOMIZED_PARTITION(A, p, r):
+	i = random.randint(p, r)
+	A[r], A[i] = EXCHANGE(A[r], A[i])
+	return PARTITION(A, p, r)
+
+def RANDOMIZED_QUICKSORT(A, p, r):
+	if(p < r):
+		q = RANDOMIZED_PARTITION(A, p, r)
+		RANDOMIZED_QUICKSORT(A, p, q-1)
+		RANDOMIZED_QUICKSORT(A, q+1, r)
+
+
 if __name__ == "__main__":
 	print "START"
 	Array = [1, 3, 2, 4,111,32,321,42,16,37]
 	A = LIST(Array)
-	QUICK_SORT(A,0,9)
+	#QUICK_SORT(A,0,9)
+	RANDOMIZED_QUICKSORT(A, 0, 9)
 	A.display()
+
+
